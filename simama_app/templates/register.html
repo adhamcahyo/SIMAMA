@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex flex-col items-center">
+    <div class="mt-8 p-4 bg-white shadow-md rounded-lg w-80">
+        <h1 class="text-2xl font-semibold mb-4">Register</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="full_name" class="block mb-2">Nama Lengkap</label>
+            <input type="text" name="full_name" id="full_name" class="border border-gray-300 p-2 rounded-md w-full mb-4">
+
+            <label for="email" class="block mb-2">Email</label>
+            <input type="email" name="email" id="email" class="border border-gray-300 p-2 rounded-md w-full mb-4">
+
+            <label for="password" class="block mb-2">Password</label>
+            <input type="password" name="password" id="password" class="border border-gray-300 p-2 rounded-md w-full mb-4">
+
+            <label for="phone_number" class="block mb-2">Nomor Telepon</label>
+            <input type="text" name="phone_number" id="phone_number" class="border border-gray-300 p-2 rounded-md w-full mb-4">
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

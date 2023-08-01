@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex justify-center space-x-4">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-1/2">
+        <div class="text-xl font-semibold mb-4">Perkembangan Selama Ini (IDR)</div>
+        
+        <div class="flex justify-between items-center mb-4">
+            <div class="text-gray-600">Total Pendapatan:</div>
+            <div class="bg-green-500 text-white px-4 py-2 rounded-lg">
+                IDR 9.400.000,00 
+            </div>
+        </div>
+        
+        <div class="flex justify-between items-center mb-4">
+            <div class="text-gray-600">Saldo Saat Ini:</div>
+            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg ml-auto">
+                IDR 49.000,00
+            </div>
+        </div>
+        
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+</div>
+        <canvas id="myChart" width="400" height="200"></canvas>
+</div>
+</div> 
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['15 Juli 2022', '21 September 2022', '5 Mei 2023', '18 November 2022', '31 Juli 2023'], // Ganti dengan tanggal sesuai riwayat penarikan
+                datasets: [{
+                    label: 'Pendapatan',
+                    data: [1500000, 2500000, 500000, 1000000, 2500000],  
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+    <div class="my-8 w-full border-t-2"></div>
+
+    <div class="flex flex-col items-center"> 
+    <div class="my-4 w-full text-xl font-semibold">Riwayat Penarikan</div>
+    <div class="mt-2 bg-white shadow-lg rounded-lg p-6 w-full"> 
+        <table class="w-full border-collapse">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 border">Tanggal</th>
+                    <th class="px-4 py-2 border">Jumlah</th>
+                    <th class="px-4 py-2 border">Status</th>
+                    <th class="px-4 py-2 border">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-4 py-2 border">18 November 2022</td>
+                    <td class="px-4 py-2 border">IDR 100.000,00</td>
+                    <td class="px-4 py-2 border">Berhasil</td>
+                    <td class="px-4 py-2 border">
+                        <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg" id="info-btn-4">Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border">5 Mei 2023</td>
+                    <td class="px-4 py-2 border">IDR 500.000,00</td>
+                    <td class="px-4 py-2 border">Berhasil</td>
+                    <td class="px-4 py-2 border">
+                        <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg" id="info-btn-3">Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border">15 Juli 2022</td>
+                    <td class="px-4 py-2 border">IDR 1.000.000,00</td>
+                    <td class="px-4 py-2 border">Berhasil</td>
+                    <td class="px-4 py-2 border">
+                        <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg" id="info-btn-1">Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border">21 September 2022</td>
+                    <td class="px-4 py-2 border">IDR 3.500.000,00</td>
+                    <td class="px-4 py-2 border">Berhasil</td>
+                    <td class="px-4 py-2 border">
+                        <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg" id="info-btn-2">Info</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border">31 Juli 2023</td>
+                    <td class="px-4 py-2 border">IDR 4.850.000,00</td>
+                    <td class="px-4 py-2 border">Pending</td>
+                    <td class="px-4 py-2 border">
+                        <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg" id="info-btn-5">Info</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+<div class="fixed bottom-4 right-4 bg-white shadow-md rounded-lg p-4 hidden" id="floating-html">
+    <button class="absolute top-2 right-2 text-gray-600 hover:text-red-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+    <h2 class="text-xl font-semibold mb-4" id="info-title"></h2>
+    <p class="text-gray-600" id="info-content"></p>
+</div>
+<script> 
+    const floatingHtml = document.getElementById('floating-html');
+    const closeBtn = document.querySelector('#floating-html button');
+
+    function showFloatingHtml() {
+        floatingHtml.classList.remove('hidden');
+    }
+
+    function hideFloatingHtml() {
+        floatingHtml.classList.add('hidden');
+    }
+ 
+    const infoButtons = document.querySelectorAll('.bg-red-500.text-white.px-3.py-1.rounded-lg');
+
+    infoButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            showFloatingHtml();
+ 
+            const row = button.parentNode.parentNode;
+            const tanggal = row.cells[0].textContent;
+            const jumlah = row.cells[1].textContent;
+            const status = row.cells[2].textContent; 
+            document.getElementById('info-title').textContent = "Informasi Penarikan";
+            document.getElementById('info-content').textContent = `
+                Tanggal: ${tanggal}
+                Jumlah: ${jumlah}
+                Status: ${status}
+            `;
+        });
+    }); 
+    closeBtn.addEventListener('click', () => {
+        hideFloatingHtml();
+    });
+</script>
+        <div class="my-4 w-full border-t-2"></div> 
+<div class="my-4 w-full border-t-2"></div> 
+<div class="my-4 w-full text-xl font-semibold">Riwayat Tugas</div>
+<div class="mt-2 bg-white shadow-lg rounded-lg p-6 w-full"> 
+    <div class="grid grid-cols-5 gap-4">
+        {% for task in tasks %}
+        <div class="border border-gray-300 p-4 rounded-lg">
+            <div class="font-semibold text-lg">{{ task.name }}</div>
+            <div class="text-sm text-gray-500">{{ task.category }}</div>
+            <div class="text-green-600 text-xl font-semibold">IDR {{ task.reward }}</div>
+            <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">Kerjakan dan dapatkan reward</button>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="my-4 w-full text-xl font-semibold">Riwayat Pendapatan</div>
+<div class="mt-2 bg-white shadow-lg rounded-lg p-6 w-full">
+    <table class="w-full border-collapse">
+        <thead>
+            <tr>
+                <th class="px-4 py-2 border">Nama Tugas</th>
+                <th class="px-4 py-2 border">Kategori</th>
+                <th class="px-4 py-2 border">Jumlah Reward</th>
+                <th class="px-4 py-2 border">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="px-4 py-2 border">Kerjakan Soal 1 - 30 Pilihan Ganda</td>
+                <td class="px-4 py-2 border">Pertanian</td>
+                <td class="px-4 py-2 border">IDR 300.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-4 py-2 border">Lakukan Penelitian</td>
+                <td class="px-4 py-2 border">Pertanian</td>
+                <td class="px-4 py-2 border">IDR 100.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-4 py-2 border">Analisis Data Proyek</td>
+                <td class="px-4 py-2 border">IT</td>
+                <td class="px-4 py-2 border">IDR 200.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-4 py-2 border">Pengembangan Aplikasi Web</td>
+                <td class="px-4 py-2 border">IT</td>
+                <td class="px-4 py-2 border">IDR 150.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-4 py-2 border">Pemeriksaan Kesehatan Pasien</td>
+                <td class="px-4 py-2 border">Kedokteran</td>
+                <td class="px-4 py-2 border">IDR 200.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-4 py-2 border">Operasi Bedah Kecil</td>
+                <td class="px-4 py-2 border">Kedokteran</td>
+                <td class="px-4 py-2 border">IDR 150.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-4 py-2 border">Pengembangan Aplikasi Mobile</td>
+                <td class="px-4 py-2 border">IT</td>
+                <td class="px-4 py-2 border">IDR 500.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-4 py-2 border">Pengujian Sistem Keamanan</td>
+                <td class="px-4 py-2 border">IT</td>
+                <td class="px-4 py-2 border">IDR 400.000,00</td>
+                <td class="px-4 py-2 border">
+                    <button class="ml-4 bg-red-500 text-white px-3 py-1 rounded-lg">Info</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+        <div class="my-4 w-full border-t-2"></div> 
+        <div class="my-4 w-full text-xl font-semibold">Daftar Refferal</div>
+        <div class="mt-2 bg-white shadow-lg rounded-lg p-6 w-full"> 
+        </div>
+    
+        <div class="my-4 w-full border-t-2"></div>
+    
+         
+
+{% endblock %}

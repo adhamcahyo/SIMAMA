@@ -1,0 +1,48 @@
+ {% extends 'base.html' %}
+
+{% block content %}
+<div class="flex flex-col items-center">
+    <div class="mt-4 p-4 bg-white shadow-md rounded-lg">
+        <h1 class="text-3xl font-semibold mb-4">Selamat datang di SIMAMA</h1>
+        <p class="text-lg mb-4">Website dummy untuk pembelajaran.</p>
+        <a href="{% url 'login' %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg mr-4">Login</a>
+        <a href="{% url 'register' %}" class="bg-green-500 text-white px-4 py-2 rounded-lg">Register</a>
+    </div>
+
+    <div class="mt-8 p-4 bg-white shadow-md rounded-lg w-full">
+        <h2 class="text-2xl font-semibold mb-4">Informasi Terkini</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> 
+            <div class="bg-blue-500 text-white px-4 py-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">Berita Terbaru</h3>
+                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus volutpat varius. Integer lacinia justo at eros iaculis, ut luctus arcu posuere.</p>
+            </div>
+            <div class="bg-green-500 text-white px-4 py-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">Pengumuman</h3>
+                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus volutpat varius. Integer lacinia justo at eros iaculis, ut luctus arcu posuere.</p>
+            </div>
+            <div class="bg-yellow-500 text-white px-4 py-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">Event Mendatang</h3>
+                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus volutpat varius. Integer lacinia justo at eros iaculis, ut luctus arcu posuere.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 p-4 bg-white shadow-md rounded-lg w-full">
+        <h2 class="text-2xl font-semibold mb-4">Tugas Terbaru</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> 
+            <div class="bg-blue-500 text-white px-4 py-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">Tugas IT</h3>
+                <p class="text-sm">Deskripsi tugas IT. Reward: IDR 50.000</p>
+            </div>
+            <div class="bg-green-500 text-white px-4 py-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">Tugas Pertanian</h3>
+                <p class="text-sm">Deskripsi tugas pertanian. Reward: IDR 30.000</p>
+            </div>
+            <div class="bg-yellow-500 text-white px-4 py-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-2">Tugas Kedokteran</h3>
+                <p class="text-sm">Deskripsi tugas kedokteran. Reward: IDR 70.000</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
